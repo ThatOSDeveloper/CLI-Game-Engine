@@ -1,12 +1,8 @@
-#include <api.h> // Assuming this contains the Player and Items structures
+#include <api.h> // Player and item structs
 #include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
 #include <stdarg.h>
-
-void clearScreen() {
-    system("clear"); // Clear the screen on Unix/Linux
-}
+#include <stdlib.h>
 
 Player player;
 Items item;
@@ -191,7 +187,7 @@ int main() {
             case 2: {
                 clearScreen();
                 list_inventory();
-                sleep(2);
+                sleepFunction(2);
                 break;
             }
             default:

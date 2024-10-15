@@ -1,5 +1,13 @@
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
+
+// If windows use windows API
+#ifdef _WIN32
+#include <windows.h>
+#else // If not windows assume its unix based.
+#include <unistd.h>
+#endif
 
 // Function to read an integer from the user
 void getint(int* buffer) {
@@ -26,4 +34,22 @@ void askintquestion(const char* question, int answeramount, int* buffer, ...) {
 
     va_end(args); // Clean up variable argument list
     scanf("%d", buffer); // Get the user's response and store it in the location pointed to by buffer
+}
+
+// Sleep function
+void sleepFunction(int seconds) {
+#ifdef _WIN32
+    Sleep(seconds * 1000); // Convert seconds to milliseconds
+#else
+    sleep(seconds);
+#endif
+}
+
+// Clear screen function
+void clearScreen() {
+#ifdef _WIN32
+    system("cls"); // Clear the screen on Windows
+#else
+    system("clear"); // Clear the screen on Unix/Linux
+#endif
 }
